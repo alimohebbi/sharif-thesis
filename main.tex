@@ -1,6 +1,6 @@
 %\documentclass[MScThesis,twoside]{sharifthesis}
 %\documentclass[MScThesis,oneside]{sharifthesis}
-\documentclass[PhDThesis,twoside]{sharifthesis}
+\documentclass[MScThesis,twoside]{sharifthesis}
 %\documentclass[PhDThesis,oneside]{sharifthesis}
 %\documentclass[PhDProposal,twoside]{sharifthesis}
 %\documentclass[PhDProposal,oneside]{sharifthesis}
@@ -27,20 +27,20 @@
 واژه‌ی کلیدی پایانی}
 \eqcommand{واژه‌های‌کلیدی}{faKeywords}
 \آرم{\درج‌تصویر[scale=.7]{logo}}
-\تاریخ{شهریور ۱۳۹۶}
+\تاریخ{شهریور 1397}
 %در دستور زیر، از \\ استفاده نکنید
-\عنوان{عنوان پایان‌نامه}
+\عنوان{مدل پیش بینی خطا مبتنی بر معیارهای جهش}
 %اگر عنوان طولانی بوده (و در عنوان انگلیسی از دو خظ استفاده شده) باید دو خط زیر از کامنت خارج و دو خط عنوان توسط آن‌ها تعریف گردد.
 %\عنوانخطیک{خط نخست عنوان طولانی}
 %\عنوانخطدو{و ادامه‌ی آن در خط دوم}
-\نویسنده{بهنام مومنی}
+\نویسنده{علی محبی   \newline}
 \دانشگاه{{\نستعلیق\درشت‌تر دانشگاه صنعتی شریف %
 \\[0.6cm]}
 دانشکده‌ی مهندسی کامپیوتر}
 \دانشگاه‌عادی{دانشگاه صنعتی شریف\\
 دانشکده‌ی مهندسی کامپیوتر}
-\موضوع{این عبارت را با گرایش به زبان پارسی جای‌گزین کنید}
-\استادراهنما{دکتر <نام استاد راهنما>}
+\موضوع{مهندسی نرم‌افزار}
+\استادراهنما{دکتر حسن میریان}
 %اگر استاد مشاور دارید، خط زیر را از comment خارج کنید
 %همچنین، فراموش نکنید در آخر این پرونده، اطلاعات انگلیسی معادل این دستورها را هم پر کنید
 %\استادمشاور{دکتر <نام استاد مشاور>}
@@ -146,10 +146,7 @@
 \printbibliography[title=\bibliographytitle,heading=bibintoc]
 \persian
 
-% glossaries
-{\cleardoublepage\setlength{\baselineskip}{1cm}\printpersianglossary\cleardoublepage\printenglishglossary}
-
-
+\printglossary
 \PrepareForLatinPages
 \date{August 2017}
 \logo{\includegraphics[scale=.4]{logo-en}}

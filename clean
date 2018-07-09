@@ -1,0 +1,4 @@
+#!/bin/bash +x
+mv main.tex 1main.tex
+rm main*
+mv 1main.tex main.tex

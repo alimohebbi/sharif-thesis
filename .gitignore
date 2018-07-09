@@ -34,3 +34,4 @@
 *.glsdefs
 *.run.xml
 *~
+*.synctex.gz

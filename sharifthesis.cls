@@ -21,7 +21,7 @@
 \RequirePackage{amsmath,amsthm,rotating,scrhack}
 \RequirePackage[headsepline=0.45pt]{scrlayer-scrpage}
 
-\renewcommand\headfont{\small\itshape}
+\renewcommand\headfont{\small}
 \renewcommand*\sectfont{\normalcolor\bfseries}
 
 \setcounter{secnumdepth}{3}
@@ -82,8 +82,8 @@
     \def\@title{\vskip0.1cm{\@titlepagesize\@thetitle\\}{\st@titlelineone\\}{\st@titlelinetwo}}
   \fi
   \def\@author{{\@titlepagesize\@by}\\{\st@author} \\[2\bigskipamount]%
-    {\@titlepagesize\@undersup}\\{\st@supervisor}%
-    \ifdefined\st@consult\\[3\bigskipamount]{\@titlepagesize\@undercons}\\{\st@consult}\if@nonlatin\\[3\bigskipamount]\else\\[4\bigskipamount]\fi\else\if@nonlatin\\[6\bigskipamount]\else\\[7\bigskipamount]\fi\fi}
+   \\ {\@titlepagesize\@undersup}\\ {\st@supervisor}%
+    \ifdefined\st@consult\\[3\bigskipamount]{\@titlepagesize\@undercons}\\{\st@consult}\if@nonlatin\\[3\bigskipamount]\else\\[4\bigskipamount]\fi\else\if@nonlatin\\[6\bigskipamount]\else\\[7\bigskipamount]\fi\fi \newline}
   \def\@date{\ifdefined\st@date\st@date\else\if@nonlatin\today\else\latintoday\fi\fi\vspace{-100pt}}
   \origin@lmaketitle
   \newcommand\date[1]{\def\st@date{##1}}
@@ -294,110 +294,110 @@
 \glsdisablehyper % disable hyperlinks
 
 \newglossarystyle{persian-to-english}{%
-%	\glossarystyle{listdotted}% the base style
+	%	\glossarystyle{listdotted}% the base style
 	\renewenvironment{theglossary}%
-		{\begin{multicols}{2}\begingroup \flushleft \linespread{1.8}\selectfont}%
-		{\endgroup \end{multicols}}%
+	{\linespread{1.8}\selectfont}%
+	{}%
 	\renewcommand*{\glossaryheader}{}%
-	\renewcommand*{\glsgroupheading}[1]{}%
+	\renewcommand*{\glsgroupheading}[1]{\subsection*{\glsgetgrouptitle{##1}}}%
 	\renewcommand*{\glsgroupskip}{}%
-	% \glossaryentryfield{label}{formatted name}{description}{symbol}{number list}
-	\renewcommand*{\glossaryentryfield}[5]{%
-		\glstarget{##1}{##2}% persian term
-		\dotfill%dots
-		\space \lr{##3} \\%translation term
-	}%
-	\renewcommand*{\glossarysubentryfield}[6]{%
-		\glossaryentryfield{##2}{##3}{##4}{##5}{##6}%
-	}%
+	\renewcommand*{\glossentry}[2]{\glsentryname{##1}\dotfill\space \lr{\glsentrydesc{##1} }\\  
+		% \glossaryentryfield{label}{formatted name}{description}{symbol}{number list}
+		%	\renewcommand*{\glossaryentryfield}[2]{
+		%		\noindent
+		%		\glstarget{##1}% persian term
+		%		\dotfill%dots
+		%		\space \lr{##2} \\%translation term
+	}
+	
 }
 \newglossarystyle{english-to-persian}{%
 	\renewenvironment{theglossary}%
-		{\begin{multicols}{2}\begingroup \flushright \linespread{1.8}\selectfont}%
-		{\endgroup \end{multicols}}%
+	{ \linespread{1.8}\selectfont}%
+	{}%
 	\renewcommand*{\glossaryheader}{}%
-	\renewcommand*{\glsgroupheading}[1]{}%
+	\renewcommand*{\glsgroupheading}[1]{\begin{LTR} \subsection*{\glsgetgrouptitle{##1}} \end{LTR}}%
 	\renewcommand*{\glsgroupskip}{}%
-	% \glossaryentryfield{label}{formatted name}{description}{symbol}{number list}
-	\renewcommand*{\glossaryentryfield}[5]{%
-		\glstarget{##1}{##2}%translation term
-		\dotfill%dots
-		\space \rl{##3} \\%persian term
-	}%
-	\renewcommand*{\glossarysubentryfield}[6]{%
-		\glossaryentryfield{##2}{##3}{##4}{##5}{##6}%
+	\renewcommand*{\glossentry}[2]{\noindent\glsentrydesc{##1}\dotfill\space \lr{ \glsentryname{##1}}
+		% \glossaryentryfield{label}{formatted name}{description}{symbol}{number list}
+		%	\renewcommand*{\glossaryentryfield}[5]{%
+		%		\glstarget{##1}{##2}%translation term
+		%		\dotfill%dots
+		%		\space \rl{##3} \\%persian term
+		%	}%
+		
 	}%
 }
 
-\newglossary{p2e-terms}{fa.gls}{fa.glo}{واژه‌نامه‌ی فارسی به انگلیسی} % persian to english
-\newglossary{e2p-terms}{en.gls}{en.glo}{English to Persian Glossary} % english to persian
+\newglossary[glg]{e2p-terms}{gls}{glo}{واژه‌نامه انگلیسی به فارسی}
+\newglossary[blg]{p2e-terms}{bls}{blo}{واژه‌نامه فارسی به انگلیسی}
 
 \newcommand{\newterm}[3][]{% params: [key]{persian}{english}
-\ifthenelse{\isempty{#1}}{\def\key{#2}}{\def\key{#1}}%
-\newglossaryentry{en:\key}{type={e2p-terms}, name={#3}, description={#2}}% english glossary
-%\newglossaryentry{fa:\key}{type={p2e-terms}, name={#2}, plural={#4}, description={#3}}% persian glossary
-\newglossaryentry{fa:\key}{type={p2e-terms}, name={#2}, description={#3}}% persian glossary
+	\ifthenelse{\isempty{#1}}{\def\key{#2}}{\def\key{#1}}%
+	\newglossaryentry{en:\key}{type={e2p-terms}, name={#3}, description={#2}}% english glossary
+	%\newglossaryentry{fa:\key}{type={p2e-terms}, name={#2}, plural={#4}, description={#3}}% persian glossary
+	\newglossaryentry{fa:\key}{type={p2e-terms}, name={#2}, description={#3}}% persian glossary
 }
 
 \defglsentryfmt[p2e-terms]{%
-  \ifdefempty\glsinsert{% use word itself
-    \ifglsused\glslabel{% subsequent usages
-        \glsifplural{%
-          \glscapscase{\glsentryplural{\glslabel}}%
-            {\Glsentryplural{\glslabel}}%
-            {\mfirstucMakeUppercase{\glsentryplural{\glslabel}}}%
-        }%
-        {%
-          \glscapscase{\glsentrytext{\glslabel}}%
-            {\Glsentrytext{\glslabel}}%
-            {\mfirstucMakeUppercase{\glsentrytext{\glslabel}}}%
-        }%
-    }%
-    {% first usage
-      \emph{%
-        \glsifplural{%
-          \glscapscase{\glsentryfirstplural{\glslabel}}%
-            {\Glsentryfirstplural{\glslabel}}%
-            {\mfirstucMakeUppercase{\glsentryfirstplural{\glslabel}}}%
-        }%
-        {%
-          \glscapscase{\glsentryfirst{\glslabel}}%
-            {\Glsentryfirst{\glslabel}}%
-            {\mfirstucMakeUppercase{\glsentryfirst{\glslabel}}}%
-        }%
-      }\LTRfootnote{\glsentrydesc{\glslabel}}%
-    }%
-  }%
-  {% override word with glsinsert
-    \ifglsused\glslabel{% subsequent usages
-      \glsinsert%
-    }%
-    {% first usage
-      \emph{\glsinsert}\LTRfootnote{\glsentrydesc{\glslabel}}%
-    }%
-  }%
+	\ifdefempty\glsinsert{% use word itself
+		\ifglsused\glslabel{% subsequent usages
+			\glsifplural{%
+				\glscapscase{\glsentryplural{\glslabel}}%
+				{\Glsentryplural{\glslabel}}%
+				{\mfirstucMakeUppercase{\glsentryplural{\glslabel}}}%
+			}%
+			{%
+				\glscapscase{\glsentrytext{\glslabel}}%
+				{\Glsentrytext{\glslabel}}%
+				{\mfirstucMakeUppercase{\glsentrytext{\glslabel}}}%
+			}%
+		}%
+		{% first usage
+			\emph{%
+				\glsifplural{%
+					\glscapscase{\glsentryfirstplural{\glslabel}}%
+					{\Glsentryfirstplural{\glslabel}}%
+					{\mfirstucMakeUppercase{\glsentryfirstplural{\glslabel}}}%
+				}%
+				{%
+					\glscapscase{\glsentryfirst{\glslabel}}%
+					{\Glsentryfirst{\glslabel}}%
+					{\mfirstucMakeUppercase{\glsentryfirst{\glslabel}}}%
+				}%
+			}\LTRfootnote{\glsentrydesc{\glslabel}}%
+		}%
+	}%
+	{% override word with glsinsert
+		\ifglsused\glslabel{% subsequent usages
+			\glsinsert%
+		}%
+		{% first usage
+			\emph{\glsinsert}\LTRfootnote{\glsentrydesc{\glslabel}}%
+		}%
+	}%
 }
 
 %\term[نمونه‌های]{key}
 \newcommand{\term}[2][]{%
-\glsadd{en:#2}%
-\ifthenelse{\isempty{#1}}{\gls{fa:#2}}{\gls{fa:#2}[#1]}%
+	\glsadd{en:#2}%
+	\ifthenelse{\isempty{#1}}{\gls{fa:#2}}{\gls{fa:#2}[#1]}%
 }
 
 \newcommand{\printpersianglossary}[1][واژه‌نامه‌ی فارسی به انگلیسی]{{%
-	\phantomsection % hyperref: enable hyperlinking from the table of contents to this point
-	\addcontentsline{toc}{chapter}{#1} % add a line in the Table of Contents (first option, toc), it will be like the ones 
-	\renewcommand{\glossarymark}[1]{\markboth{##1}}% correct handling of page header
-	\printglossary[type={p2e-terms},style={persian-to-english},title={#1}]%
+		\phantomsection % hyperref: enable hyperlinking from the table of contents to this point
+		\addcontentsline{toc}{chapter}{#1} % add a line in the Table of Contents (first option, toc), it will be like the ones 
+		\renewcommand{\glossarymark}[1]{\markboth{##1}}% correct handling of page header
+		\printglossary[type={p2e-terms},style={persian-to-english},title={#1}]%
 }}
 \newcommand{\printenglishglossary}[1][واژه‌نامه‌ی انگلیسی به فارسی]{{%
-	\phantomsection % hyperref: enable hyperlinking from the table of contents to this point
-	\addcontentsline{toc}{chapter}{#1} % add a line in the Table of Contents (first option, toc), it will be like the ones 
-	\renewcommand{\glossarymark}[1]{\markboth{##1}}% correct handling of page header
-	\begin{latin}%
-	\LTRmulticolcolumns
-	\printglossary[type={e2p-terms},style={english-to-persian},title={\rl{#1}}]%
-	\end{latin}%
+		\phantomsection % hyperref: enable hyperlinking from the table of contents to this point
+		\addcontentsline{toc}{chapter}{#1} % add a line in the Table of Contents (first option, toc), it will be like the ones 
+		\renewcommand{\glossarymark}[1]{\markboth{##1}}% correct handling of page header
+		\begin{latin}%
+			\LTRmulticolcolumns
+			\printglossary[type={e2p-terms},style={english-to-persian},title={\rl{#1}}]%
+		\end{latin}%
 }}
 
 % Reset the first-use flag of the transaltion glossareis
@@ -405,15 +405,38 @@
 
 %\ترجمه[نمونه‌های]{نمونه}{example}
 \newcommand{\trans}[3][]{% params: [actual form]{persian}{english}
-\newterm{#2}{#3}% add to glossary
-\term[#1]{#2}% and cite it
+	\newterm{#2}{#3}% add to glossary
+	\term[#1]{#2}% and cite it
 }
 
 %\نام[نویسنده‌ی کتاب فلان]{اِسمیت}{Smith}
 \newcommand{\name}[3][]{% Just maps a name by translitaration (independent of glossary)
-\ifthenelse{\isempty{#1}}%
-{\emph{#2}\LTRfootnote{#3}}% if #1 is empty
-{\emph{#2}\LTRfootnote{#3; #1}}% if #1 is not empty
+	\ifthenelse{\isempty{#1}}%
+	{\emph{#2}\LTRfootnote{#3}}% if #1 is empty
+	{\emph{#2}\LTRfootnote{#3; #1}}% if #1 is not empty
+}
+
+
+\let\Oldprintglossary\printglossary
+\renewcommand{\printglossary}{
+	\let\appendix\relax
+	%% تنظیم کننده فاصله بین خطوط در این قسمت
+	\clearpage
+	\phantomsection
+	%% این دستور موجب این می‌شود که واژه‌نامه‌ها در  حالت دو ستونی نوشته شود. 
+	\twocolumn{}
+	%% با این دستور عنوان واژه‌نامه به فهرست مطالب اضافه می‌شود. 
+	\addcontentsline{toc}{chapter}{واژه نامه انگلیسی به فارسی}
+	\setglossarystyle{english-to-persian}
+	\Oldprintglossary[type=e2p-terms]
+	
+	\clearpage
+	\phantomsection
+	%% با این دستور عنوان واژه‌نامه به فهرست مطالب اضافه می‌شود. 
+	\addcontentsline{toc}{chapter}{واژه نامه فارسی به انگلیسی}
+	\setglossarystyle{persian-to-english}
+	\Oldprintglossary[type=p2e-terms]
+	\onecolumn{}
 }
 
 %abbreviation support may be added here...
