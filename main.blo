@@ -29,3 +29,4 @@
 (indexentry :tkey (("مشکوک بودن" "\\glossentry{fa:مشکوک بودن}") ) :locref "{}{14}" :attr "pageglsnumberformat" ) 
 (indexentry :tkey (("منسوخ" "\\glossentry{fa:منسوخ}") ) :locref "{}{15}" :attr "pageglsnumberformat" ) 
 (indexentry :tkey (("ارزیابی میان دسته‌ای" "\\glossentry{fa:ارزیابی میان دسته‌ای}") ) :locref "{}{15}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("انتشار" "\\glossentry{fa:انتشار}") ) :locref "{}{21}" :attr "pageglsnumberformat" ) 
