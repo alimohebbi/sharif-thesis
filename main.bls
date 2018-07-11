@@ -33,7 +33,8 @@
 \glossentry{fa:امتیاز جهش }{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{12}}}\relax\glsresetentrylist
 \glossentry{fa:انتشار}{\glossaryentrynumbers{\relax 
-\glsXpageXglsnumberformat{}{10}}}\relax\glsresetentrylist
+\glsXpageXglsnumberformat{}{10}\delimN 
+\glsXpageXglsnumberformat{}{21}}}\relax\glsresetentrylist
 \glossentry{fa:اندازه‌گیری وکالتی}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{12}}}\glsgroupskip
 \glsgroupheading{ب}\relax\glsresetentrylist
@@ -45,10 +46,14 @@
 \glsXpageXglsnumberformat{}{3}}}\glsgroupskip
 \glsgroupheading{پ}\relax\glsresetentrylist
 \glossentry{fa:پیچیدگی حلقوی}{\glossaryentrynumbers{\relax 
-\glsXpageXglsnumberformat{}{7}}}\glsgroupskip
+\glsXpageXglsnumberformat{}{7}}}\relax\glsresetentrylist
+\glossentry{fa:پیکربندی}{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{27}}}\glsgroupskip
 \glsgroupheading{ت}\relax\glsresetentrylist
 \glossentry{fa:تکرار}{\glossaryentrynumbers{\relax 
-\glsXpageXglsnumberformat{}{9}}}\glsgroupskip
+\glsXpageXglsnumberformat{}{9}}}\relax\glsresetentrylist
+\glossentry{fa:توضیح}{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{23}}}\glsgroupskip
 \glsgroupheading{ث}\relax\glsresetentrylist
 \glossentry{fa:ثبت}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{8}}}\glsgroupskip
@@ -59,6 +64,9 @@
 \glsXpageXglsnumberformat{}{10}}}\relax\glsresetentrylist
 \glossentry{fa:جهش‌یافته}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{12}}}\glsgroupskip
+\glsgroupheading{چ}\relax\glsresetentrylist
+\glossentry{fa:چهارچوب}{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{28}}}\glsgroupskip
 \glsgroupheading{خ}\relax\glsresetentrylist
 \glossentry{fa:خطا‌خیزی}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{3}}}\glsgroupskip
@@ -88,6 +96,10 @@
 \glsgroupheading{م}\relax\glsresetentrylist
 \glossentry{fa:ماتریس درهم‌ریختگی}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{4}}}\relax\glsresetentrylist
+\glossentry{fa:متن-باز}{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{28}}}\relax\glsresetentrylist
+\glossentry{fa:مستند‌جاوا}{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{23}}}\relax\glsresetentrylist
 \glossentry{fa:مشکوک بودن}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{14}}}\relax\glsresetentrylist
 \glossentry{fa:معیارهای محصول}{\glossaryentrynumbers{\relax 

@@ -30,3 +30,8 @@
 (indexentry :tkey (("منسوخ" "\\glossentry{fa:منسوخ}") ) :locref "{}{15}" :attr "pageglsnumberformat" ) 
 (indexentry :tkey (("ارزیابی میان دسته‌ای" "\\glossentry{fa:ارزیابی میان دسته‌ای}") ) :locref "{}{15}" :attr "pageglsnumberformat" ) 
 (indexentry :tkey (("انتشار" "\\glossentry{fa:انتشار}") ) :locref "{}{21}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("مستند‌جاوا" "\\glossentry{fa:مستند‌جاوا}") ) :locref "{}{23}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("توضیح" "\\glossentry{fa:توضیح}") ) :locref "{}{23}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("پیکربندی" "\\glossentry{fa:پیکربندی}") ) :locref "{}{27}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("متن-باز" "\\glossentry{fa:متن-باز}") ) :locref "{}{28}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("چهارچوب" "\\glossentry{fa:چهارچوب}") ) :locref "{}{28}" :attr "pageglsnumberformat" ) 
