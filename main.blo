@@ -35,3 +35,8 @@
 (indexentry :tkey (("پیکربندی" "\\glossentry{fa:پیکربندی}") ) :locref "{}{27}" :attr "pageglsnumberformat" ) 
 (indexentry :tkey (("متن-باز" "\\glossentry{fa:متن-باز}") ) :locref "{}{28}" :attr "pageglsnumberformat" ) 
 (indexentry :tkey (("چهارچوب" "\\glossentry{fa:چهارچوب}") ) :locref "{}{28}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("وابستگی" "\\glossentry{fa:وابستگی}") ) :locref "{}{29}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("خط دستور" "\\glossentry{fa:خط دستور}") ) :locref "{}{29}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("افزونه" "\\glossentry{fa:افزونه}") ) :locref "{}{32}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("کارایی" "\\glossentry{fa:کارایی}") ) :locref "{}{35}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("عمومی" "\\glossentry{fa:عمومی}") ) :locref "{}{35}" :attr "pageglsnumberformat" ) 
