@@ -30,6 +30,8 @@
 \glsXpageXglsnumberformat{}{15}}}\relax\glsresetentrylist
 \glossentry{fa:اشکال زدایی}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{12}}}\relax\glsresetentrylist
+\glossentry{fa:افزونه}{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{32}}}\relax\glsresetentrylist
 \glossentry{fa:امتیاز جهش }{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{12}}}\relax\glsresetentrylist
 \glossentry{fa:انتشار}{\glossaryentrynumbers{\relax 
@@ -67,6 +69,9 @@
 \glsgroupheading{چ}\relax\glsresetentrylist
 \glossentry{fa:چهارچوب}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{28}}}\glsgroupskip
+\glsgroupheading{ح}\relax\glsresetentrylist
+\glossentry{fa:حاشیه‌نویسی شده}{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{37}}}\glsgroupskip
 \glsgroupheading{خ}\relax\glsresetentrylist
 \glossentry{fa:خط دستور}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{29}}}\relax\glsresetentrylist
@@ -78,9 +83,13 @@
 \glossentry{fa:دسته‌بندی تغییر}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{11}}}\glsgroupskip
 \glsgroupheading{ز}\relax\glsresetentrylist
+\glossentry{fa:زمان خروج}{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{44}}}\relax\glsresetentrylist
 \glossentry{fa:زوجیت}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{8}}}\glsgroupskip
 \glsgroupheading{س}\relax\glsresetentrylist
+\glossentry{fa:سبک‌وزن}{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{37}}}\relax\glsresetentrylist
 \glossentry{fa:سیستم کنترل نسخه}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{3}\delimN 
 \glsXpageXglsnumberformat{}{8}}}\glsgroupskip
@@ -89,15 +98,25 @@
 \glsXpageXglsnumberformat{}{12}}}\relax\glsresetentrylist
 \glossentry{fa:شهرت}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{8}}}\glsgroupskip
+\glsgroupheading{ع}\relax\glsresetentrylist
+\glossentry{fa:عمومی}{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{35}}}\glsgroupskip
 \glsgroupheading{ف}\relax\glsresetentrylist
+\glossentry{fa:فراداده}{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{44}}}\relax\glsresetentrylist
 \glossentry{fa:فرض زمینه‌ای}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{7}}}\glsgroupskip
 \glsgroupheading{ق}\relax\glsresetentrylist
 \glossentry{fa:قطعه}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{3}}}\glsgroupskip
+\glsgroupheading{ک}\relax\glsresetentrylist
+\glossentry{fa:کارایی}{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{35}}}\glsgroupskip
 \glsgroupheading{م}\relax\glsresetentrylist
 \glossentry{fa:ماتریس درهم‌ریختگی}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{4}}}\relax\glsresetentrylist
+\glossentry{fa:ماشین مجازی جاوا}{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{44}}}\relax\glsresetentrylist
 \glossentry{fa:متن-باز}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{28}}}\relax\glsresetentrylist
 \glossentry{fa:مستند‌جاوا}{\glossaryentrynumbers{\relax 
@@ -113,7 +132,9 @@
 \glsXpageXglsnumberformat{}{10}}}\glsgroupskip
 \glsgroupheading{و}\relax\glsresetentrylist
 \glossentry{fa:وابستگی}{\glossaryentrynumbers{\relax 
-\glsXpageXglsnumberformat{}{29}}}\glsgroupskip
+\glsXpageXglsnumberformat{}{29}}}\relax\glsresetentrylist
+\glossentry{fa:ورودی/خروجی}{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{38}}}\glsgroupskip
 \glsgroupheading{ه}\relax\glsresetentrylist
 \glossentry{fa:همبستگی}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{8}}}%

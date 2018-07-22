@@ -234,6 +234,7 @@
 \RequirePackage{multicol,float,array}
 \RequirePackage{url}
 \RequirePackage{listings}
+
 % The order of package inclusions is important
 \RequirePackage[localise]{xepersian}
 
