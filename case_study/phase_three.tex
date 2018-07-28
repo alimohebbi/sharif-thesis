@@ -1,0 +1,16 @@
+\section{رویکرد سوم: معیارهای ترکیبی جهش-فرآیند}
+
+نحوه‌ی محاسبه به این صورت خواهید بود که ابتدا ثبت‌هایی از برنامه در طول آخرین انتشار که در آن فایل مورد نظر تغییر کرده است  توسط  پرسمان \ref{code:commit-during-release}بازیابی می شود. سپس برای هر ثبت تعداد جهش یافته‌های جدید نسبت به ثبت قبلی محاسبه می‌شود و برای محاسبه‌ی جهش‌یافته‌های حذف شده تعداد جهش یافته‌ها در  ثبت قبلی را یافته و آن‌ها که جز خطوط حذف شده در ثبت بعدی است شمرده می شود. تعداد جهش‌یافته‌های اضافه و حذف شده در ثبت‌ها جمع شده و بر تعداد ثبت‌های کل پروژه در طول انتشار تقسیم می گردد.
+
+
+
+\begin{latin}
+\begin{lstlisting}[language=SQL]
+SELECT CC.* from CommitChangedFile CC, CommitInfo CI where CC.COMMIT_INFO_ID = CI.ID
+AND CI.SEQUENCE_NUMBER BETWEEN :startSeq AND :endSeq
+AND CI.PROJECT = :project
+AND CC.FILE_NAME = :fileName ORDER BY CI.SEQUENCE_NUMBER asc
+\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{بازیابی اطلاعات ثبت‌هایی که یک فایل در بازه‌ی مشخص در آنها تغییر کرده است}
+\label{code:commit-during-release}
