@@ -26,8 +26,11 @@
 \glsgroupheading{ا}\relax\glsresetentrylist
 \glossentry{fa:آماره‌های توصیفی}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{11}}}\relax\glsresetentrylist
+\glossentry{fa:ابرصفحه}{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{59}}}\relax\glsresetentrylist
 \glossentry{fa:ارزیابی میان دسته‌ای}{\glossaryentrynumbers{\relax 
-\glsXpageXglsnumberformat{}{15}}}\relax\glsresetentrylist
+\glsXpageXglsnumberformat{}{15}\delimN 
+\glsXpageXglsnumberformat{}{49}}}\relax\glsresetentrylist
 \glossentry{fa:اشکال زدایی}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{12}}}\relax\glsresetentrylist
 \glossentry{fa:افزونه}{\glossaryentrynumbers{\relax 
@@ -105,7 +108,9 @@
 \glossentry{fa:فراداده}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{44}}}\relax\glsresetentrylist
 \glossentry{fa:فرض زمینه‌ای}{\glossaryentrynumbers{\relax 
-\glsXpageXglsnumberformat{}{7}}}\glsgroupskip
+\glsXpageXglsnumberformat{}{7}}}\relax\glsresetentrylist
+\glossentry{fa:فضای ویژگی}{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{59}}}\glsgroupskip
 \glsgroupheading{ق}\relax\glsresetentrylist
 \glossentry{fa:قطعه}{\glossaryentrynumbers{\relax 
 \glsXpageXglsnumberformat{}{3}}}\glsgroupskip
