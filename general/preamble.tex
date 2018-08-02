@@ -15,7 +15,8 @@
 \newcounter{tablerow}
 \renewcommand{\arraystretch}{1.5}
 \usepackage{cleveref}
-
+\usepackage{csvsimple}
+\usepackage{longtable}
 \usepackage{color}
 \usepackage[table]{xcolor}  
 \newcommand{\crefrangeconjunction}{--}
@@ -85,10 +86,13 @@
 
 \renewcommand{\lstlistingname}{\rl{قطعه کد}}
 
+% \raggedbottom
+
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{codeblue}{rgb}{0.11,0.191,0.80}
 
 \lstdefinestyle{mystyle}{
 	backgroundcolor=\color{backcolour},   

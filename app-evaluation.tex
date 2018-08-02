@@ -1,0 +1,157 @@
+
+\lstdefinestyle{appstyle}{
+	backgroundcolor=\color{white},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codeblue},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2,
+	basicstyle=\normalsize
+}
+
+\lstset{style=appstyle}
+
+\chapter{ساخت مدل‌های پیش‌بینی و ارزیابی}
+
+در این قسمت قطعه کدهای ساخت مدل‌های پیش‌بینی و ارزیابی آنها آورده شده است. قطعه کد \ref{code:data-set}  مجموعه‌داده‌ها را آماده می کند و تنظیمات مربوط به آموزش مدل‌ها را انجام می‌دهد. 
+
+\begin{latin}
+	\begin{lstlisting}[language=R]
+library(RMySQL);
+library(caret);
+library(pROC);
+library(e1071)
+
+mydb = dbConnect(MySQL(), user='root', password='1', dbname='bug_predict', host='127.0.0.1');
+
+rs_mutation_metric = dbSendQuery(mydb, "select * from MutationMetric");
+mutation_metircs = fetch(rs_mutation_metric, n=-1);
+rs_process_metric = dbSendQuery(mydb, "select * from ProcessMetric ");
+process_metircs = fetch(rs_process_metric, n=-1);
+
+##### clean up data #####
+source("/home/ali/project/R-scripts/kill-live-to-score.R");
+
+merged_metrics <- merge(x=clean_mutation_metircs,y=process_metircs, by.x="MetricId", by.y="ID")
+lables<- as.factor(merged_metrics[,names(merged_metrics) %in% c("FILE_TYPE")]);
+
+
+############test and train#############
+b_number<-nrow(merged_metrics[merged_metrics$FILE_TYPE == "B",])
+c_number<- nrow(merged_metrics[merged_metrics$FILE_TYPE == "C",])
+smp_size_b <- floor(0.9 * b_number);
+smp_size_c <- floor(0.9 * c_number);
+
+## set the seed to make your partition reproducible
+set.seed(1423)
+train_ind_b <- sample(seq_len(b_number), size = smp_size_b)
+train_ind_c <- sample(seq_len(c_number), size = smp_size_c)
+train_ind_c <- train_ind_c + b_number
+train_ind <- c(train_ind_b, train_ind_c)
+
+#########train control##########
+MyFolds <- createMultiFolds(merged_metrics[train_ind,4], k = 10, times=10)
+train_control <- trainControl(method = "cv", index = MyFolds,
+savePredictions = TRUE,
+classProbs = TRUE
+#    ,summaryFunction = twoClassSummary
+)
+
+	\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{آماده‌سازی مجموعه داده}
+\label{code:data-set}
+در قطعه کد \ref{code:clean} پاک‌سازی داده‌ها و تبدیل داده‌های جهش به امتیاز جهش انجام می‌شود.
+\begin{latin}
+	\begin{lstlisting}[language=R]
+	clean_mutation_metircs<- mutation_metircs[!is.na(mutation_metircs$Covered),];
+	
+	for(i in 1:dim(clean_mutation_metircs)[1])
+	{
+	if(clean_mutation_metircs[i,'Lived']==-1)
+	{
+	clean_mutation_metircs[i,'Lived']<- 0;
+	clean_mutation_metircs[i,'Killed']<-clean_mutation_metircs[i,'Killed']-1;
+	}
+	}
+	
+	temp<-clean_mutation_metircs;
+	temp[,6]<-clean_mutation_metircs[,6]/clean_mutation_metircs[,5]
+	temp[,7]<-clean_mutation_metircs[,6]/clean_mutation_metircs[,2]
+	clean_mutation_metircs <- temp
+	
+	for(i in 1:dim(clean_mutation_metircs)[1])
+	{
+	if(is.nan(clean_mutation_metircs[i,'Lived']))
+	clean_mutation_metircs[i,'Lived']<- 0;
+	if(is.nan(clean_mutation_metircs[i,'Killed']))
+	clean_mutation_metircs[i,'Killed']<- 0;
+	}
+	\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{تبدیل داده‌های جهش به امتیاز جهش }
+\label{code:clean}
+در قطعه کد \ref{code:modeling} مدل‌های پیش‌بینی ساخته می‌شوند و با استفاده از داده‌های آزمون پیش‌بینی انجام می‌گیرد. تمامی معیارها در متغیر merged\_metrics وجود دارند و با انتخاب ستون‌های مورد نظر زیر مجموعه‌ی مناسب انتخاب می‌شود. همچنین در تابع train روش دسته‌بندی انتخاب می‌گردد.
+
+\begin{latin}
+	\begin{lstlisting}[language=R]
+
+############Process Metrics#############
+p_features<-merged_metrics[,-c(seq(1,13),17,20)];
+model1 <- train(p_features[train_ind,], lables[train_ind], trControl = train_control, method="nnet");
+predict1_raw<-predict.train(model1, p_features[-train_ind,], type="raw")
+predict1_prob<-predict.train(model1, p_features[-train_ind,], type="prob")
+
+
+############Process Metrics with mutation#############
+
+m_features1<-merged_metrics[,!names(merged_metrics) %in% c("FILE_TYPE","MetricId","FileType","FileInfoId","FILE_INFO_ID")];
+m_features1<-m_features1[,-c(seq(5,10))];
+model2 <- train(m_features1[train_ind,], lables[train_ind], trControl=train_control, method="nnet");
+predict1_raw<-predict.train(model2, m_features1[-train_ind,], type="raw")
+predict1_prob<-predict.train(model2, m_features1[-train_ind,], type="prob")
+
+
+m_features2<-merged_metrics[,!names(merged_metrics) %in% c("FILE_TYPE","MetricId","FileType","FileInfoId","FILE_INFO_ID")];
+m_features2<-m_features2[,-c(7,8)];
+model3 <- train(m_features2[train_ind,], lables[train_ind], trControl=train_control, method="nnet");
+predict2_raw<-predict.train(model3, m_features2[-train_ind,], type="raw")
+predict2_prob<-predict.train(model3, m_features2[-train_ind,], type="prob")
+
+	\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{ساخت مدل‌های پیش‌بینی}
+\label{code:modeling}
+در قطعه کد \ref{code:evluation} پیش‌بینی‌های انجام شده ارزیابی می‌شوند.
+
+\begin{latin}
+	\begin{lstlisting}[language=R]
+
+auc(lables[-train_ind], predict1_prob$B)
+auc(lables[-train_ind], predict2_prob$B)
+auc(lables[-train_ind], predict3_prob$B)
+
+plot(roc(lables[-train_ind], predict1_prob$B), col="blue", cex.lab=2, cex.axis=1.5);
+plot(roc(lables[-train_ind], predict2_prob$B), add=TRUE, col="red", lty=2);
+plot(roc(lables[-train_ind], predict3_prob$B), add=TRUE, col="black", lty=4);
+ legend(x="bottomright",col=c("blue", "red", "black"),lwd=3,legend=c("Process","Process & Mutation", "Process & Mutation Base"),bty="6", lty=c(1,2,4), cex = 1.5)
+
+
+confusionMatrix(predict1_raw, lables[-train_ind])
+confusionMatrix(predict2_raw, lables[-train_ind])
+confusionMatrix(predict3_raw, lables[-train_ind])
+
+	\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{ساخت مدل‌های پیش‌بینی}
+\label{code:evluation}
