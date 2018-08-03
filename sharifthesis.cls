@@ -191,7 +191,7 @@
 \hbox{}
 \vspace*{\fill}
 \begin{center}
-\textit{\rl{[این صفحه آگاهانه خالی گذاشته شده است.]}}
+\textit{\rl{}}
 \end{center}
 \vspace{\fill}
 \newpage
@@ -200,7 +200,7 @@
 \hbox{}
 \vspace*{\fill}
 \begin{center}
-\textit{\rl{[این صفحه آگاهانه خالی گذاشته شده است.]}}
+\textit{\rl{}}
 \end{center}
 \vspace{\fill}
 \thispagestyle{empty}

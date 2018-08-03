@@ -56,3 +56,7 @@
 (indexentry :tkey (("ارزیابی میان دسته‌ای" "\\glossentry{fa:ارزیابی میان دسته‌ای}") ) :locref "{}{51}" :attr "pageglsnumberformat" ) 
 (indexentry :tkey (("فضای ویژگی" "\\glossentry{fa:فضای ویژگی}") ) :locref "{}{61}" :attr "pageglsnumberformat" ) 
 (indexentry :tkey (("ابرصفحه" "\\glossentry{fa:ابرصفحه}") ) :locref "{}{61}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("انقیاد" "\\glossentry{fa:انقیاد}") ) :locref "{}{72}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("ساخت" "\\glossentry{fa:ساخت}") ) :locref "{}{73}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("مشتری" "\\glossentry{fa:مشتری}") ) :locref "{}{73}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("ابر" "\\glossentry{fa:ابر}") ) :locref "{}{73}" :attr "pageglsnumberformat" ) 
