@@ -236,6 +236,7 @@
 \RequirePackage{listings}
 
 % The order of package inclusions is important
+
 \RequirePackage[localise]{xepersian}
 
 %% Define a new 'leo' style for the package that will use a smaller font.
@@ -245,6 +246,7 @@
 \urlstyle{leo}
 
 \RequirePackage{xifthen}% Provides \isempty test which is used for glossary
+
 
 % equivalent commands and environments
 \eqcommand{اظهارنامه}{copyrightform}

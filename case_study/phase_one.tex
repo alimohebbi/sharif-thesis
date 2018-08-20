@@ -119,7 +119,7 @@ SELECT  * from CommitInfo CI where CI.COMMIT_GIT_ID = :gitId AND CI.PROJECT = :p
 
 \begin{latin}
 \begin{lstlisting}[language=SQL]
-SELECT  count(*) from CommitChangedFile CC where CC.COMMIT_INFO_ID IN
+SELECT  count(*) from CommitChangedFile CCzzz where CC.COMMIT_INFO_ID IN
 	(SELECT CI.ID from CommitInfo CI WHERE CI.SEQUENCE_NUMBER BETWEEN 
 	 :startSeq AND :endSeq AND CI.PROJECT = :project)
 AND CC.FILE_NAME = :fileName
