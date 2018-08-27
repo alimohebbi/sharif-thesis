@@ -1,0 +1,152 @@
+\chapter{پرسمان‌ها}
+\label{app-queries}
+پرسمان‌های استفاده شده در این پایانامه در این بخش آمده است. 
+
+
+
+
+
+\begin{latin}
+\begin{lstlisting}[language=SQL]
+SELECT  * from CommitInfo CI where CI.COMMIT_GIT_ID = :gitId AND CI.PROJECT = :project
+\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{بازیابی اطلاعات ثبت}
+\label{code:commit-info}
+
+\begin{latin}
+\begin{lstlisting}[language=SQL]
+SELECT  count(*) from CommitChangedFile CC where CC.COMMIT_INFO_ID IN
+(SELECT CI.ID from CommitInfo CI WHERE CI.SEQUENCE_NUMBER BETWEEN 
+:startSeq AND :endSeq AND CI.PROJECT = :project)
+AND CC.FILE_NAME = :fileName
+\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{محاسبه‌ی معیار تعداد ثبت‌ در سیستم کنترل نسخه}
+\label{code:comm}
+
+
+\begin{latin}
+\begin{lstlisting}[language=SQL]
+SELECT  count(DISTINCT CI.COMMITTER_MAIL) from CommitInfo CI WHERE
+CI.SEQUENCE_NUMBER BETWEEN :startSeq AND :endSeq AND CI.PROJECT = 
+project AND CI.ID IN 
+(SELECT CC.COMMIT_INFO_ID from CommitChangedFile CC where CC.FILE_NAME = :fileName)
+\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{محاسبه‌ی تعداد توسعه‌دهندگان فعال}
+
+\begin{latin}
+\begin{lstlisting}[language=SQL]
+SELECT sum(CC.ADDED_LINES) from CommitChangedFile CC where
+CC.COMMIT_INFO_ID IN
+(SELECT CI.ID from CommitInfo CI WHERE CI.SEQUENCE_NUMBER BETWEEN 
+:startSeq AND :endSeq AND CI.PROJECT = :project)
+AND CC.FILE_NAME = :fileName
+\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{محاسبه‌ی تعداد خطوط اضافه شده به پرونده}
+\label{code:added-line-file}
+
+\begin{latin}
+\begin{lstlisting}[language=SQL]
+SELECT  sum(CC.ADDED_LINES) from CommitChangedFile CC where 
+CC.COMMIT_INFO_ID IN
+(SELECT CI.ID from CommitInfo CI WHERE CI.SEQUENCE_NUMBER
+BETWEEN :startSeq AND :endSeq AND CI.PROJECT = :project)
+\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{محاسبه‌ی تعداد خطوط اضافه شده به پروژه}
+\label{code:added-line-project}
+
+
+\begin{latin}
+\begin{lstlisting}[language=SQL]
+SELECT max(PARTICIPATION_PERCENT) from Participation P 
+where COMMIT_ID = :commitId AND FILE_NAME = :fileName")
+\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{محاسبه‌ی درصد خطوط مالک پرونده}
+\label{code:own}
+
+\begin{latin}
+\begin{lstlisting}[language=SQL]
+SELECT count(AUTHOR_EMAIL) from Participation P 
+where COMMIT_ID = :commitId AND FILE_NAME = :fileName
+and PARTICIPATION_PERCENT < :minorThreshold
+\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{محاسبه‌ی تعداد مشارکت‌کنندگان جزئی}
+\label{code:minor}
+
+
+
+\begin{latin}
+\begin{lstlisting}[language=SQL]
+SELECT FILE_NAME as `name`, count(ID) as `frequency` FROM
+CommitChangedFile WHERE COMMIT_INFO_ID IN
+(SELECT COMMIT_INFO_ID FROM CommitChangedFile WHERE FILE_NAME = :fileName) 
+AND COMMIT_INFO_ID IN
+(SELECT CI.ID from CommitInfo CI WHERE CI.SEQUENCE_NUMBER BETWEEN :startSeq AND :endSeq AND PROJECT = :project)
+AND FILE_NAME != :fileName GROUP BY FILE_NAME
+\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{یافتن همسایگان و تعدد همسایگی}
+\label{code:neighbor}
+
+\begin{latin}
+\begin{lstlisting}[language=SQL]
+SELECT AUTHOR_EMAIL FROM Participation P WHERE COMMIT_ID = :commitId 
+AND FILE_NAME = :fileName AND PARTICIPATION_PERCENT  = 
+(SELECT max(PARTICIPATION_PERCENT) FROM Participation P2 
+WHERE P2.COMMIT_ID = :commitId  AND P2.FILE_NAME = :fileName)
+\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{یافتن مالک پرونده}
+\label{code:find-owner}
+
+
+
+\begin{latin}
+\begin{lstlisting}[language=SQL]
+SELECT  count(*) from CommitInfo CI where CI.SEQUENCE_NUMBER BETWEEN
+:startSeq AND :endSeq AND CI.PROJECT = :project AND CI.COMMITTER_MAIL =
+:authorEmail
+\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{شمارش تعداد ثبت‌های یک ثبت کننده در بازه‌ی زمانی داده شده}
+\label{code:commit-of-commiter}
+
+\begin{latin}
+\begin{lstlisting}[language=SQL]
+SELECT AUTHOR_EMAIL FROM Participation P WHERE COMMIT_ID = :commitId 
+AND FILE_NAME = :fileName
+\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{یافتن مشارکت‌کنندگان در پرونده}
+\label{code:contributers}
+
+\begin{latin}
+\begin{lstlisting}[language=SQL]
+SELECT * FROM ProjectRelease WHERE Project = :project AND
+SequenceNumber <  
+(SELECT SequenceNumber FROM ProjectRelease WHERE 
+Project = :project AND CommitId = :releaseCommit) 
+ORDER BY SequenceNumber DESC LIMIT 4 
+\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{بازیابی چهار نسخه‌ی اخیر یک ثبت}
+\label{code:previous-releases}
+
+
+
+\begin{latin}
+\begin{lstlisting}[language=SQL]
+SELECT CC.* from CommitChangedFile CC, CommitInfo CI where CC.COMMIT_INFO_ID = CI.ID
+AND CI.SEQUENCE_NUMBER BETWEEN :startSeq AND :endSeq
+AND CI.PROJECT = :project
+AND CC.FILE_NAME = :fileName ORDER BY CI.SEQUENCE_NUMBER asc
+\end{lstlisting}
+\end{latin}
+\captionof{lstlisting}{بازیابی اطلاعات ثبت‌هایی که یک فایل در بازه‌ی مشخص در آنها تغییر کرده است}
+\label{code:commit-during-release}
